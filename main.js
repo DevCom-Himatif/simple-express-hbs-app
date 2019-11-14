@@ -1,5 +1,5 @@
-const { PORT, MONGODB_URL } = require("./constants");
-const routes = require("./routes");
+const { PORT, MONGODB_URL } = require("./constants/constants");
+const routes = require("./routes/routes");
 const bodyParser = require("body-parser");
 const express = require("express");
 const mongoose = require("mongoose");
