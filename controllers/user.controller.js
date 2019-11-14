@@ -1,4 +1,5 @@
 const UserModel = require("../models/user.model");
+const uuidv1 = require("uuid/v1");
 
 const getAll = async (req, res) => {
   const users = await UserModel.find().exec();
@@ -13,11 +14,13 @@ const getAll = async (req, res) => {
 const create = (req, res) => {
   const { body } = req;
 
-  if (!body)
+  if (!Object.keys(body).length)
     return res.status(400).send({ message: "Request Body can not be empty" });
 
   const { first_name, family_name } = body;
-  const user = new UserModel({ first_name, family_name });
+  const id = uuidv1();
+
+  const user = new UserModel({ id, first_name, family_name });
 
   user
     .save()
