@@ -5,9 +5,9 @@ const router = express.Router();
 
 router.get("/ping", (req, res) => res.status(200).json("pong"));
 
-router.get("/authors", userController.getAll);
-router.get("/author/:id", userController.getOne);
-router.post("/author", userController.create);
-router.put("/author/:id", userController.update);
+router.get("/users", userController.getAll);
+router.get("/user/:id", userController.getOne);
+router.post("/user", userController.create);
+router.put("/user/:id", userController.update);
 
 module.exports = router;
