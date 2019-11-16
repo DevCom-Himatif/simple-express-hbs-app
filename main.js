@@ -5,6 +5,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 mongoose.connect(MONGODB_URL, {
+  useCreateIndex: true,
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
