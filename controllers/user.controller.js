@@ -1,14 +1,20 @@
 const UserModel = require("../models/user.model");
 const uuidv1 = require("uuid/v1");
 
-const create = (req, res) => {
+const create = async (req, res) => {
   const { body } = req;
 
   if (!Object.keys(body).length)
     return res.status(400).send({ message: "Request Body can not be empty" });
 
   const { first_name, family_name } = body;
-  const id = uuidv1();
+  let id;
+  let isUserExist;
+
+  do {
+    id = uuidv1();
+    isUserExist = await UserModel.findOne({ first_name });
+  } while (isUserExist);
 
   const user = new UserModel({ id, first_name, family_name });
 
